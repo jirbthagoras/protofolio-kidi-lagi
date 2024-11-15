@@ -1,6 +1,5 @@
-// src/components/Navbar.js
 import React from 'react';
-import logo1 from '../assets/asai.jpeg'; // Adjust the path based on your project structure
+import logo1 from '../assets/asai.jpeg';
 
 const Navbar = () => {
     return (

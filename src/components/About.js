@@ -5,7 +5,7 @@ const About = () => {
     <section className="p-8">
       <div className="flex flex-col items-center">
         <img
-          src={profile} // atau gunakan require('../assets/profile.jpg') jika file ada di src/assets
+          src={profile}
           alt="Profile"
           className="w-32 h-32 rounded-full object-cover mb-4"
         />

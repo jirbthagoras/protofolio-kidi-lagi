@@ -1,5 +1,3 @@
-// src/components/Admin.js
-
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { collection, addDoc, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
@@ -14,7 +12,6 @@ const Admin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Authentication
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setIsAdmin(!!user);
@@ -38,7 +35,6 @@ const Admin = () => {
     }
   };
 
-  // Fetch Projects
   useEffect(() => {
     const fetchProjects = async () => {
       const querySnapshot = await getDocs(collection(db, "projects"));
@@ -47,7 +43,6 @@ const Admin = () => {
     fetchProjects();
   }, [isAdmin]);
 
-  // Add Project
   const handleAddProject = async (e) => {
     e.preventDefault();
     const docRef = await addDoc(collection(db, "projects"), newProject);
@@ -55,20 +50,17 @@ const Admin = () => {
     setNewProject({ name: '', description: '', link: '' });
   };
 
-  // Delete Project
   const handleDeleteProject = async (id) => {
     await deleteDoc(doc(db, "projects", id));
     setProjects(projects.filter(project => project.id !== id));
   };
 
-  // Start Editing Project
   const startEditingProject = (project) => {
     setIsEditing(true);
     setNewProject({ name: project.name, description: project.description, link: project.link });
     setCurrentProjectId(project.id);
   };
 
-  // Update Project
   const handleUpdateProject = async (e) => {
     e.preventDefault();
     const projectRef = doc(db, 'projects', currentProjectId);
